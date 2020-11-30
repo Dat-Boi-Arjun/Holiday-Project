@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 @Transactional
@@ -24,17 +23,16 @@ public class WishlistDatabase {
                 .getResultList();
     }
 
-    public List<String> matchUsers(double price) {
-        List<WishlistItem> wishlists = entityManager.createQuery(
+    public List<WishlistItem> priceMatch(double price) {
+
+        return entityManager.createQuery(
                 "select w from WishlistItem w where w.price <= :price", WishlistItem.class)
                 .setParameter("price", price)
                 .getResultList();
-
-        return wishlists.stream().map(WishlistItem::getUser).distinct().collect(Collectors.toList());
     }
 
 
-    public WishlistItem updateWishlist(WishlistItem item) {
+    public WishlistItem updateItem(WishlistItem item) {
         return entityManager.merge(item);
     }
 

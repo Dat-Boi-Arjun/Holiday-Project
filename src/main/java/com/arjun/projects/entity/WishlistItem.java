@@ -13,6 +13,7 @@ public class WishlistItem {
     private String user;
 
     private String name;
+    private String url;
     private double price;
 
     public WishlistItem() {}
