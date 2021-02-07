@@ -1,2 +1,8 @@
 # Holiday-Project
-This is our holiday-themed app
+This project is a social media app that connects users based on a certain user's wishlist, which another user may be able to fulfill. This platform takes on the role of traditional "Secret Santa" parties. The goal is to promote the spirit of giving in holiday times.
+
+To do this, the project employs an in-memory Java SQL database called H2. This enables it to run on an external machine with minimal system resources or external installation, compared to a full MySQL server or NoSQL Mongo Repository. It provides persistence for as long as the machine is running, and auto-initializes when the program starts. The database stores user information, such as basic profile credentials (including username, password, description) and that user's wishlist for gifts during the holidays, and the max price of an item that they would be able to buy for someone else. Through JPQL querying, users are sorted and matched to fulfill another user's wishlist. The setup of the SQL schema is such that this code can easily be ported to a more powerful SQL database when enough users join the platform.
+
+The queries are linked to web endpoints, so the frontend client-side code will be able to request the backend to provide or change profile information, or to perform gift matching. These different aspects are wrapped with the Java Spring Framework, which enables dependency injection and web server support through annotations.
+
+The logic behind sorting SQL query results and API endpoint access have been tested thoroughly with JUnit and Spring Boot unit tests. Using Maven Build Tools in Java, the project dependencies and code will be condensed into a single JAR file that can be run from the command line of the host machine.
